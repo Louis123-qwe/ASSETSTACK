@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0052ff">
+    <meta name="description" content="Asset Stack — Curated high-ROI tools for developers and finance professionals.">
+    <title>Asset Stack | The Professional ROI Hub</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="logo">Asset<span>Stack</span></a>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="about.html">About</a>
+                    <a href="legal.html">Legal</a>
+                    <a href="admin.html" class="nav-cta">Admin</a>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="hero-inner">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Live Asset Feed
+            </div>
+            <h1 class="hero">The Professional <em>ROI</em> Hub.</h1>
+            <p class="hero-sub">Curated, audited tools for developers and finance professionals who treat their stack as an asset — not an expense.</p>
+            <div class="hero-stats">
+                <div class="hstat">
+                    <div class="hstat-value accent" id="asset-count">—</div>
+                    <div class="hstat-label">Audited Assets</div>
+                </div>
+                <div class="hstat">
+                    <div class="hstat-value green">Live</div>
+                    <div class="hstat-label">Feed Status</div>
+                </div>
+                <div class="hstat">
+                    <div class="hstat-value">3-Point</div>
+                    <div class="hstat-label">Audit Process</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTROLS -->
+    <div class="controls-section">
+        <div class="controls-top">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Search assets by name, category…" autocomplete="off">
+            </div>
+            <select class="sort-select" onchange="sortAssets(this.value)">
+                <option value="newest">Sort: Newest</option>
+                <option value="oldest">Sort: Oldest</option>
+                <option value="name">Sort: A → Z</option>
+            </select>
+        </div>
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterAssets('All', this)">
+                All <span class="filter-count" id="count-All">0</span>
+            </button>
+            <button class="filter-btn" onclick="filterAssets('Financial Utility', this)">
+                💰 Finance <span class="filter-count" id="count-Financial-Utility">0</span>
+            </button>
+            <button class="filter-btn" onclick="filterAssets('Tech Stack', this)">
+                ⚙️ Tech <span class="filter-count" id="count-Tech-Stack">0</span>
+            </button>
+            <button class="filter-btn" onclick="filterAssets('Marketing Tool', this)">
+                📣 Marketing <span class="filter-count" id="count-Marketing-Tool">0</span>
+            </button>
+            <button class="filter-btn" onclick="filterAssets('Bounty', this)">
+                🎯 Bounties <span class="filter-count" id="count-Bounty">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- GRID -->
+    <main class="main-section">
+        <div class="section-header">
+            <div class="section-title">Asset Directory</div>
+            <div class="section-count" id="showing-count"></div>
+        </div>
+        <div class="grid" id="product-container">
+            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;">
+                <div class="skeleton" style="height:160px;border-radius:0;"></div>
+                <div style="padding:20px;">
+                    <div class="skeleton" style="height:20px;width:40%;margin-bottom:12px;"></div>
+                    <div class="skeleton" style="height:16px;width:80%;margin-bottom:8px;"></div>
+                    <div class="skeleton" style="height:13px;width:95%;margin-bottom:6px;"></div>
+                    <div class="skeleton" style="height:13px;width:60%;"></div>
+                </div>
+            </div>
+            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;">
+                <div class="skeleton" style="height:160px;border-radius:0;"></div>
+                <div style="padding:20px;">
+                    <div class="skeleton" style="height:20px;width:40%;margin-bottom:12px;"></div>
+                    <div class="skeleton" style="height:16px;width:80%;margin-bottom:8px;"></div>
+                    <div class="skeleton" style="height:13px;width:95%;margin-bottom:6px;"></div>
+                    <div class="skeleton" style="height:13px;width:60%;"></div>
+                </div>
+            </div>
+            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;">
+                <div class="skeleton" style="height:160px;border-radius:0;"></div>
+                <div style="padding:20px;">
+                    <div class="skeleton" style="height:20px;width:40%;margin-bottom:12px;"></div>
+                    <div class="skeleton" style="height:16px;width:80%;margin-bottom:8px;"></div>
+                    <div class="skeleton" style="height:13px;width:95%;margin-bottom:6px;"></div>
+                    <div class="skeleton" style="height:13px;width:60%;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+        <div class="newsletter-inner">
+            <h2>Stay Ahead of the Stack.</h2>
+            <p>New high-ROI assets, audited weekly. No noise — only what moves the needle.</p>
+            <div class="newsletter-form">
+                <input type="email" id="nl-email" placeholder="your@email.com">
+                <button onclick="subscribeNewsletter()">Subscribe →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">Asset<span>Stack</span></div>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="legal.html">Legal</a>
+                <a href="admin.html">Admin</a>
+            </div>
+            <div class="footer-legal">
+                Asset Stack partners with PartnerStack, ShareASale, Impact.com, and CJ Affiliate.
+                Some links are affiliate links — commission earned at no extra cost to you.
+                Content is informational only and does not constitute financial advice.
+            </div>
+            <div style="margin-top:16px;font-size:11px;">© 2025 Asset Stack · Built by Louis Ekemini</div>
+        </div>
+    </footer>
+
+    <!-- READ MORE MODAL -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal-content"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
