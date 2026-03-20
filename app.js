@@ -4,7 +4,7 @@
 // =============================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDzqvg6xz-acaxKrKEQ7Ht5M9mzcrGAIhw",
@@ -21,7 +21,6 @@ const db  = getDatabase(app);
 
 // ── State ──
 let allAssets  = [];
-let ratings    = JSON.parse(localStorage.getItem('as_ratings') || '{}');
 let activeFilter = 'All';
 
 const container    = document.getElementById('product-container');
@@ -64,10 +63,12 @@ function renderAssets(assets) {
         return;
     }
     container.innerHTML = assets.map(p => {
-        const userRating = ratings[p.id] || 0;
+        const avgRating = (p.ratingSum && p.ratingCount) ? Math.round(p.ratingSum / p.ratingCount) : (p.defaultRating || 0);
+        const totalVotes = p.ratingCount || 0;
         const stars = [1,2,3,4,5].map(i =>
-            `<span class="star ${userRating >= i ? 'filled':''}" onclick="rateAsset('${p.id}',${i})">★</span>`
+            `<span class="star ${avgRating >= i ? 'filled':''}" onclick="rateAsset('${p.id}',${i})">★</span>`
         ).join('');
+        const voteLabel = totalVotes > 0 ? `<span class="card-votes">${avgRating.toFixed(1)} · ${totalVotes} vote${totalVotes>1?'s':''}</span>` : '<span class="card-votes">Be first to rate</span>';
         const imgHtml = p.image
             ? `<img class="card-image" src="${p.image}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
             : '';
@@ -84,7 +85,7 @@ function renderAssets(assets) {
                 <h3 class="card-name">${p.name}</h3>
                 <p class="card-desc">${p.description || 'No description provided.'}</p>
                 <button class="card-read-more" onclick="openModal('${p.id}')">Read more →</button>
-                <div class="card-stars">${stars}</div>
+                <div class="card-stars">${stars}${voteLabel}</div>
                 <div class="card-footer">
                     <a href="${p.link}" target="_blank" rel="noopener" class="btn-primary">Analyze Deal →</a>
                     <button class="btn-share" onclick="shareAsset('${p.name}','${p.link}')" title="Share">↗</button>
@@ -170,13 +171,20 @@ document.getElementById('modal-overlay').addEventListener('click', (e) => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') window.closeModal(); });
 
-// ── Star ratings ──
-window.rateAsset = (id, score) => {
-    ratings[id] = score;
-    localStorage.setItem('as_ratings', JSON.stringify(ratings));
+// ── Star ratings — saved to Firebase, averaged across all visitors ──
+window.rateAsset = async (id, score) => {
+    // Optimistic UI update
     const card = document.getElementById(`card-${id}`);
     if (card) card.querySelectorAll('.star').forEach((s,i) => s.classList.toggle('filled', i < score));
     showToast(`Rated ${score} star${score > 1 ? 's':''} ⭐`);
+
+    // Save to Firebase via transaction (thread-safe average)
+    try {
+        await runTransaction(ref(db, `products/${id}/ratingSum`), current => (current || 0) + score);
+        await runTransaction(ref(db, `products/${id}/ratingCount`), current => (current || 0) + 1);
+    } catch(e) {
+        console.warn('Rating save failed:', e);
+    }
 };
 
 // ── Share ──
