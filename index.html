@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0052ff">
-    <meta name="description" content="Asset Stack — Curated high-ROI tools for developers and finance professionals.">
-    <title>Asset Stack | The Professional ROI Hub</title>
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="description" content="Asset Stack — Discover tools that make and save you money. ROI-tested. Expert audited. No hype.">
+    <title>Asset Stack | Stop Wasting Money on Tools That Don't Deliver</title>
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -13,152 +13,276 @@
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav>
-        <div class="nav-inner">
-            <a href="index.html" class="logo">Asset<span>Stack</span></a>
-            <div class="nav-right">
-                <div class="nav-links">
-                    <a href="about.html">About</a>
-                    <a href="legal.html">Legal</a>
-                    
-                </div>
-                <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
-            </div>
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="logo">Asset<span>Stack</span></a>
+        <div class="nav-center">
+            <a href="#start-here">Start Here</a>
+            <a href="#tools">Top Tools</a>
+            <a href="#how-it-works">How It Works</a>
         </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero-section">
-        <div class="hero-inner">
-            <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                Live Asset Feed
-            </div>
-            <h1 class="hero">The Professional <em> ROI</em> Hub.</h1>
-            <p class="hero-sub">Curated, audited tools for developers and finance professionals who treat their stack as an asset — not an expense.</p>
-            <div class="hero-stats">
-                <div class="hstat">
-                    <div class="hstat-value accent" id="asset-count">—</div>
-                    <div class="hstat-label">Audited Assets</div>
-                </div>
-                <div class="hstat">
-                    <div class="hstat-value green">Live</div>
-                    <div class="hstat-label">Feed Status</div>
-                </div>
-                <div class="hstat">
-                    <div class="hstat-value">3-Point</div>
-                    <div class="hstat-label">Audit Process</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTROLS -->
-    <div class="controls-section">
-        <div class="controls-top">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" placeholder="Search assets by name, category…" autocomplete="off">
-            </div>
-            <select class="sort-select" onchange="sortAssets(this.value)">
-                <option value="newest">Sort: Newest</option>
-                <option value="oldest">Sort: Oldest</option>
-                <option value="name">Sort: A → Z</option>
-            </select>
-        </div>
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterAssets('All', this)">
-                All <span class="filter-count" id="count-All">0</span>
-            </button>
-            <button class="filter-btn" onclick="filterAssets('Financial Utility', this)">
-                💰 Finance <span class="filter-count" id="count-Financial-Utility">0</span>
-            </button>
-            <button class="filter-btn" onclick="filterAssets('Tech Stack', this)">
-                ⚙️ Tech <span class="filter-count" id="count-Tech-Stack">0</span>
-            </button>
-            <button class="filter-btn" onclick="filterAssets('Marketing Tool', this)">
-                📣 Marketing <span class="filter-count" id="count-Marketing-Tool">0</span>
-            </button>
-            <button class="filter-btn" onclick="filterAssets('Bounty', this)">
-                🎯 Bounties <span class="filter-count" id="count-Bounty">0</span>
-            </button>
+        <div class="nav-right">
+            <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+            
         </div>
     </div>
+</nav>
 
-    <!-- GRID -->
-    <main class="main-section">
-        <div class="section-header">
-            <div class="section-title">Asset Directory</div>
-            <div class="section-count" id="showing-count"></div>
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span>247 Tools Audited · Zero Sponsored Content</span>
         </div>
-        <div class="grid" id="product-container">
-            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;">
-                <div class="skeleton" style="height:160px;border-radius:0;"></div>
-                <div style="padding:20px;">
-                    <div class="skeleton" style="height:20px;width:40%;margin-bottom:12px;"></div>
-                    <div class="skeleton" style="height:16px;width:80%;margin-bottom:8px;"></div>
-                    <div class="skeleton" style="height:13px;width:95%;margin-bottom:6px;"></div>
-                    <div class="skeleton" style="height:13px;width:60%;"></div>
+        <h1 class="hero-h1">
+            Stop Paying for Tools<br>
+            <em>That Don't Pay Back.</em>
+        </h1>
+        <p class="hero-sub">
+            Every tool on Asset Stack has passed a strict 3-point ROI audit.
+            We find the tools that make you money — and cut the ones draining it.
+        </p>
+        <div class="hero-ctas">
+            <a href="#tools" class="btn-primary-hero">
+                Explore Top ROI Tools
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#how-it-works" class="btn-ghost-hero">See How It Works</a>
+        </div>
+        <div class="hero-trust">
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                <span>ROI-Tested</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                <span>Expert Audited</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                <span>No Paid Listings</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                <span>Updated Weekly</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+    <div class="stat-bar-inner">
+        <div class="stat-item">
+            <span class="stat-num" id="asset-count">—</span>
+            <span class="stat-label">Audited Tools</span>
+        </div>
+        <div class="stat-divider-v"></div>
+        <div class="stat-item">
+            <span class="stat-num green">$340</span>
+            <span class="stat-label">Avg Monthly Savings</span>
+        </div>
+        <div class="stat-divider-v"></div>
+        <div class="stat-item">
+            <span class="stat-num">40%</span>
+            <span class="stat-label">Max Recurring Commission</span>
+        </div>
+        <div class="stat-divider-v"></div>
+        <div class="stat-item">
+            <span class="stat-num">3-Point</span>
+            <span class="stat-label">Audit Process</span>
+        </div>
+    </div>
+</div>
+
+<!-- START HERE -->
+<section class="start-here" id="start-here">
+    <div class="section-inner">
+        <div class="section-label">Guided Start</div>
+        <h2 class="section-h2">Where Do You Want to Begin?</h2>
+        <p class="section-sub">Tell us your goal and we'll show you the exact tools that move the needle for you.</p>
+        <div class="path-grid">
+            <div class="path-card" onclick="filterByPath('beginners')">
+                <div class="path-icon">🚀</div>
+                <h3>Best for Beginners</h3>
+                <p>Zero to first dollar. Free tools that require no experience or capital to start.</p>
+                <div class="path-arrow">Explore →</div>
+            </div>
+            <div class="path-card" onclick="filterByPath('affiliate')">
+                <div class="path-icon">💸</div>
+                <h3>Best for Affiliate Marketing</h3>
+                <p>High-commission recurring programs that pay you month after month.</p>
+                <div class="path-arrow">Explore →</div>
+            </div>
+            <div class="path-card" onclick="filterByPath('developers')">
+                <div class="path-icon">⚙️</div>
+                <h3>Best for Developers</h3>
+                <p>Infrastructure tools that eliminate hosting costs and accelerate builds.</p>
+                <div class="path-arrow">Explore →</div>
+            </div>
+            <div class="path-card" onclick="filterByPath('passive')">
+                <div class="path-icon">📈</div>
+                <h3>Best for Passive Income</h3>
+                <p>Set-and-forget systems that generate revenue while you sleep.</p>
+                <div class="path-arrow">Explore →</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TOOLS SECTION -->
+<section class="tools-section" id="tools">
+    <div class="section-inner">
+        <div class="tools-header">
+            <div>
+                <div class="section-label">Tool Directory</div>
+                <h2 class="section-h2">ROI-Tested Tools</h2>
+            </div>
+            <div class="tools-controls">
+                <div class="search-wrap">
+                    <span class="search-icon-svg">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </span>
+                    <input type="text" id="search-input" placeholder="Search tools…" autocomplete="off">
+                </div>
+                <select class="sort-select" onchange="sortAssets(this.value)">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="name">A → Z</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar" id="filter-bar">
+            <button class="filter-btn active" data-filter="All" onclick="filterAssets('All', this)">
+                All <span class="fcount" id="count-All">0</span>
+            </button>
+            <button class="filter-btn" data-filter="Financial Utility" onclick="filterAssets('Financial Utility', this)">
+                💰 Finance <span class="fcount" id="count-Financial-Utility">0</span>
+            </button>
+            <button class="filter-btn" data-filter="Tech Stack" onclick="filterAssets('Tech Stack', this)">
+                ⚙️ Tech <span class="fcount" id="count-Tech-Stack">0</span>
+            </button>
+            <button class="filter-btn" data-filter="Marketing Tool" onclick="filterAssets('Marketing Tool', this)">
+                📣 Marketing <span class="fcount" id="count-Marketing-Tool">0</span>
+            </button>
+            <button class="filter-btn" data-filter="Bounty" onclick="filterAssets('Bounty', this)">
+                🎯 Bounty <span class="fcount" id="count-Bounty">0</span>
+            </button>
+        </div>
+
+        <!-- TOOL GRID -->
+        <div class="tool-grid" id="product-container">
+            <!-- Skeleton loaders -->
+            <div class="card-skeleton"><div class="sk-img"></div><div class="sk-line w40"></div><div class="sk-line w70"></div><div class="sk-line w90"></div><div class="sk-line w60"></div></div>
+            <div class="card-skeleton"><div class="sk-img"></div><div class="sk-line w40"></div><div class="sk-line w70"></div><div class="sk-line w90"></div><div class="sk-line w60"></div></div>
+            <div class="card-skeleton"><div class="sk-img"></div><div class="sk-line w40"></div><div class="sk-line w70"></div><div class="sk-line w90"></div><div class="sk-line w60"></div></div>
+            <div class="card-skeleton"><div class="sk-img"></div><div class="sk-line w40"></div><div class="sk-line w70"></div><div class="sk-line w90"></div><div class="sk-line w60"></div></div>
+            <div class="card-skeleton"><div class="sk-img"></div><div class="sk-line w40"></div><div class="sk-line w70"></div><div class="sk-line w90"></div><div class="sk-line w60"></div></div>
+            <div class="card-skeleton"><div class="sk-img"></div><div class="sk-line w40"></div><div class="sk-line w70"></div><div class="sk-line w90"></div><div class="sk-line w60"></div></div>
+        </div>
+
+        <div class="showing-count" id="showing-count"></div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
+    <div class="section-inner">
+        <div class="section-label">The Audit Process</div>
+        <h2 class="section-h2">How Asset Stack Evaluates Every Tool</h2>
+        <p class="section-sub">Every tool goes through a strict 3-point audit before appearing on this platform. No exceptions.</p>
+        <div class="audit-grid">
+            <div class="audit-card">
+                <div class="audit-num">01</div>
+                <h3>Utility Test</h3>
+                <p>Does it solve a specific bottleneck a professional faces today — not hypothetically? Vague tools that try to do everything fail this test immediately.</p>
+                <div class="audit-verdict pass">Specific Problem Required</div>
+            </div>
+            <div class="audit-card">
+                <div class="audit-num">02</div>
+                <h3>Longevity Test</h3>
+                <p>Will this tool still be relevant in 2 years? Tools built on shaky business models, dying markets or trend-dependent demand are excluded.</p>
+                <div class="audit-verdict pass">Long-term Viability Required</div>
+            </div>
+            <div class="audit-card">
+                <div class="audit-num">03</div>
+                <h3>ROI Test</h3>
+                <p>Does the measurable output justify the cost? Every dollar spent on a tool must return more than a dollar in value — time, money, or both.</p>
+                <div class="audit-verdict pass">Positive ROI Required</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+    <div class="newsletter-inner">
+        <div class="nl-badge">Weekly ROI Report</div>
+        <h2>Get the Tools That Pay — Delivered Weekly.</h2>
+        <p>New audited tools, honest reviews and ROI frameworks every week. No noise. No sponsored content. Just what works.</p>
+        <div class="newsletter-form">
+            <input type="email" id="nl-email" placeholder="your@email.com">
+            <button onclick="subscribeNewsletter()">Get Weekly Report →</button>
+        </div>
+        <div class="nl-trust">Join professionals already optimising their stack</div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">Asset<span>Stack</span></div>
+                <p>Curated ROI-audited tools for developers and finance professionals. No sponsored listings. No paid placements.</p>
+            </div>
+            <div class="footer-links-grid">
+                <div>
+                    <div class="footer-col-title">Platform</div>
+                    <a href="#tools">Tool Directory</a>
+                    <a href="#start-here">Start Here</a>
+                    <a href="#how-it-works">How It Works</a>
+                </div>
+                <div>
+                    <div class="footer-col-title">Company</div>
+                    <a href="about.html"></a>
+                    <a href="legal.html"></a>
+                    <a href="admin.html"></a>
                 </div>
             </div>
-            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;">
-                <div class="skeleton" style="height:160px;border-radius:0;"></div>
-                <div style="padding:20px;">
-                    <div class="skeleton" style="height:20px;width:40%;margin-bottom:12px;"></div>
-                    <div class="skeleton" style="height:16px;width:80%;margin-bottom:8px;"></div>
-                    <div class="skeleton" style="height:13px;width:95%;margin-bottom:6px;"></div>
-                    <div class="skeleton" style="height:13px;width:60%;"></div>
-                </div>
-            </div>
-            <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;">
-                <div class="skeleton" style="height:160px;border-radius:0;"></div>
-                <div style="padding:20px;">
-                    <div class="skeleton" style="height:20px;width:40%;margin-bottom:12px;"></div>
-                    <div class="skeleton" style="height:16px;width:80%;margin-bottom:8px;"></div>
-                    <div class="skeleton" style="height:13px;width:95%;margin-bottom:6px;"></div>
-                    <div class="skeleton" style="height:13px;width:60%;"></div>
-                </div>
-            </div>
         </div>
-    </main>
-
-    <!-- NEWSLETTER -->
-    <section class="newsletter-section">
-        <div class="newsletter-inner">
-            <h2>Stay Ahead of the Stack.</h2>
-            <p>New high-ROI assets, audited weekly. No noise — only what moves the needle.</p>
-            <div class="newsletter-form">
-                <input type="email" id="nl-email" placeholder="your@email.com">
-                <button onclick="subscribeNewsletter()">Subscribe →</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-logo">Asset<span>Stack</span></div>
-            <div class="footer-links">
-                <a href="about.html">About</a>
-                <a href="legal.html">Legal</a>
-          
-            </div>
+        <div class="footer-bottom">
             <div class="footer-legal">
-                Asset Stack partners with PartnerStack, ShareASale, Impact.com, and CJ Affiliate.
-                Some links are affiliate links — commission earned at no extra cost to you.
-                Content is informational only and does not constitute financial advice.
+                Asset Stack partners with PartnerStack, ShareASale, Impact.com and CJ Affiliate. Some links are affiliate links — commission earned at no extra cost to you. Content is informational only and does not constitute financial advice.
             </div>
-            <div style="margin-top:16px;font-size:11px;">© 2025 Asset Stack · Built by Louis Ekemini</div>
+            <div class="footer-copy">© 2025 Asset Stack · Built by Louis Ekemini</div>
         </div>
-    </footer>
-
-    <!-- READ MORE MODAL -->
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="modal-content"></div>
     </div>
+</footer>
 
-    <div class="toast" id="toast"></div>
-    <script type="module" src="app.js"></script>
+<!-- STICKY CTA (mobile) -->
+<div class="sticky-cta" id="sticky-cta">
+    <a href="#tools" class="sticky-cta-btn">Explore ROI Tools →</a>
+</div>
+
+<!-- READ MORE MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleModalClick(event)">
+    <div class="modal" id="modal-content"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="app.js"></script>
 </body>
 </html>
+
